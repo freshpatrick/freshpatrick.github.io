@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- bootstrapjs -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <!-- 輪播 -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">
+    <script src="../package/js/swiper.min.js"></script>
+
+    <!-- <script src="https://unpkg.com/swiper/js/swiper.js"></script> -->
+    <script src="https://unpkg.com/swiper/js/swiper.min.js"></script>
+
+
+    <!-- 動畫 -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+</head>
+
+<style>
+    body {
+        margin: 0;
+    }
+
+    .margin {
+        display: flex;
+        margin-left: auto;
+
+    }
+
+
+    .logo-img {
+        width: 10%;
+        height: 10vh;
+        /* background-image:url('./img/logo.jpg') ;
+     background-position: center;
+     background-size: cover; */
+    }
+
+
+    /* banner */
+    /* 做一個banner把裡面包起來 */
+    .banner {
+        width: 100%;
+        height: 80vh;
+    }
+
+
+    .swiper-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    .swiper-slide {
+        background: black;
+        color: white;
+
+    }
+
+
+    .fontsize {
+        font-size: 1.25rem;
+    }
+
+    /* banner結束 */
+
+    /* 產品分頁 */
+
+    h2 {
+        text-align: center;
+    }
+
+
+    #tab {
+        max-width: 80%;
+        margin: 0 auto;
+        margin-top: 30px;
+    }
+
+    .tab_btns {
+        display: flex;
+    }
+
+    .tab_btn {
+        border: 1px solid;
+        flex-grow: 1;
+        padding: 10px 20px;
+        text-align: center;
+        border-radius: 10px 10px 0 0;
+        background-color: #ccc;
+        cursor: pointer;
+    }
+
+    .tab_btn.active {
+        border-bottom: none;
+        background-color: white;
+    }
+
+    .tab_content {
+        display: none;
+        border: 1px solid;
+        border-top: none;
+        padding: 20px 30px;
+        padding-top: 0;
+        border-radius: 0 0 10px 10px;
+        background-color: white;
+    }
+
+    .tab_content.active {
+        display: block;
+    }
+
+    .tab_content h1 {
+        margin: 0;
+        text-align: center;
+    }
+
+    .more {
+        margin-top: 5px;
+        margin-left: auto;
+    }
+
+    /* 活動資訊*/
+
+    .activity-container {
+        width: 100%;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+
+    .activity {
+        background-position: center;
+        background-size: cover;
+        width: 300px;
+        height: 300px;
+
+    }
+
+    /* 桌球小劇場 */
+    .tennis-bgtheat {
+        width: 80%;
+        margin: auto;
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .tennis-smtheat {
+        width: 40%;
+        height: 60vh;
+    }
+
+    /* RWD */
+    /* 搜尋往左靠 */
+    @media screen and (max-width: 991px) {
+
+        /* 讓search往左靠 */
+        .navbar {
+            justify-content: unset;
+        }
+
+       /* search到600px就會被擠到 */
+
+
+        /* 漢堡條位置往右 */
+        .navbar-toggler{
+            margin-left: auto;
+        }
+
+        .navbar-collapse{
+            margin-left: auto;
+        }
+
+        /* 如何將導覽列右移 */
+
+    }
+</style>
+
+<body>
+
+    <!-- NAV -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fontsize">
+        <a class="navbar-brand " href="#">
+            <i class="fas fa-table-tennis" style=" color: red;"></i>
+            千里達桌球網
+            <!-- <img width="100%" src="./img/logo.jpg" alt="千里達_logo"> -->
+
+        </a>
+
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <!-- <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form> -->
+
+            <ul class="navbar-nav  margin">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        產品
+                    </a>
+
+                    <!-- 下拉式選單 -->
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">產品資訊</a>
+                        <a class="dropdown-item" href="#">購物方式</a>
+                        <div class="dropdown-divider"></div>
+                    </div>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">活動資訊</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">桌球小劇場</a>
+                </li>
+
+                <!-- 關於我們 -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        關於我們
+                    </a>
+
+                    <!-- 下拉式選單 -->
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#"> 關於我們</a>
+                        <a class="dropdown-item" href="#">桌球小知識</a>
+                        <div class="dropdown-divider"></div>
+                    </div>
+                </li>
+
+
+
+            </ul>
+
+        </div>
+    </nav>
+
+    <!-- 內容 -->
+    <!--banner  -->
+    <div class="banner">
+        <!-- Swiper -->
+        <div class="swiper-container banner-container">
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide ">
+                    <img width="100%" src="./img/banner/banner1.png" alt="">
+                </div>
+                <div class="swiper-slide ">
+                    <img width="100%" src="./img/banner/banner2.jpg" alt="">
+                </div>
+                <div class="swiper-slide ">
+                    <img width="100%" src="./img/banner/banner3.jpg" alt="">
+                </div>
+
+
+            </div>
+            <!-- 加入分頁 -->
+            <div class="swiper-pagination"></div>
+            <!-- 加入箭頭 -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <br>
+    <!-- 產品分類隔頁式用js-->
+    <h2>產品分類</h2>
+    <div id="tab">
+        <div class="tab_btns">
+            <div class="tab_btn active">panel1</div>
+            <div class="tab_btn">panel2</div>
+            <div class="tab_btn">panel3</div>
+            <div class="tab_btn">panel3</div>
+            <div class="tab_btn">panel3</div>
+            <div class="tab_btn">panel3</div>
+
+        </div>
+
+        <div class="tab_contents">
+            <div id="tab_content1" class="tab_content active">
+                <!-- 俊榮貼 -->
+                <!-- 圖片分析 -->
+                <section class="">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 col-md-4 ">
+                                <div class="card mt-3  p-3 shadow w-100">
+                                    <img src="https://s.yimg.com/ny/api/res/1.2/Juk1tFpESvxuu8Cy5wssyQ--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9NTEwO2g9Mjg3/https://media.zenfs.com/ko/setn.com.tw/3156a01d1d816f305e06526ec9f420a7"
+                                        class="card-img-top" alt="...">
+                                    <div class="card-body text-center">
+                                        <p class="card-text">日本桌球板子</p>
+                                        <a href="#" class="btn btn-primary">點我查看</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-4 ">
+                                <div class="card mt-3  p-3 shadow w-100">
+                                    <img src="https://s.yimg.com/ny/api/res/1.2/Juk1tFpESvxuu8Cy5wssyQ--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9NTEwO2g9Mjg3/https://media.zenfs.com/ko/setn.com.tw/3156a01d1d816f305e06526ec9f420a7"
+                                        class="card-img-top" alt="...">
+                                    <div class="card-body text-center">
+                                        <p class="card-text">日本桌球板子</p>
+                                        <a href="#" class="btn btn-primary">點我查看</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-12 col-md-4 ">
+                                <div class="card mt-3  p-3 shadow w-100">
+                                    <img src="https://s.yimg.com/ny/api/res/1.2/Juk1tFpESvxuu8Cy5wssyQ--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9NTEwO2g9Mjg3/https://media.zenfs.com/ko/setn.com.tw/3156a01d1d816f305e06526ec9f420a7"
+                                        class="card-img-top" alt="...">
+                                    <div class="card-body text-center">
+                                        <p class="card-text">日本桌球板子</p>
+                                        <a href="#" class="btn btn-primary">點我查看</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- 第二行 -->
+                        <div class="row">
+                            <div class="col-12 col-md-4 ">
+                                <div class="card mt-3  p-3 shadow w-100">
+                                    <img src="https://s.yimg.com/ny/api/res/1.2/Juk1tFpESvxuu8Cy5wssyQ--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9NTEwO2g9Mjg3/https://media.zenfs.com/ko/setn.com.tw/3156a01d1d816f305e06526ec9f420a7"
+                                        class="card-img-top" alt="...">
+                                    <div class="card-body text-center">
+                                        <p class="card-text">日本桌球板子</p>
+                                        <a href="#" class="btn btn-primary">點我查看</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-4 ">
+                                <div class="card mt-3  p-3 shadow w-100">
+                                    <img src="https://s.yimg.com/ny/api/res/1.2/Juk1tFpESvxuu8Cy5wssyQ--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9NTEwO2g9Mjg3/https://media.zenfs.com/ko/setn.com.tw/3156a01d1d816f305e06526ec9f420a7"
+                                        class="card-img-top" alt="...">
+                                    <div class="card-body text-center">
+                                        <p class="card-text">日本桌球板子</p>
+                                        <a href="#" class="btn btn-primary">點我查看</a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-12 col-md-4 ">
+                                <div class="card mt-3  p-3 shadow w-100">
+                                    <img src="https://s.yimg.com/ny/api/res/1.2/Juk1tFpESvxuu8Cy5wssyQ--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9NTEwO2g9Mjg3/https://media.zenfs.com/ko/setn.com.tw/3156a01d1d816f305e06526ec9f420a7"
+                                        class="card-img-top" alt="...">
+                                    <div class="card-body text-center">
+                                        <p class="card-text">日本桌球板子</p>
+                                        <a href="#" class="btn btn-primary">點我查看</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- 第二行結束 -->
+                        <!-- 第三行 -->
+                        <div class="row">
+                            <a href="#" class="btn btn-primary more ">更多資訊</a>
+                        </div>
+
+
+                        <!-- 第三行結束 -->
+                    </div>
+                </section>
+                <!-- 俊榮貼完 -->
+            </div>
+
+
+            <!-- tab2 -->
+            <div id="tab_content2" class="tab_content">
+                <h1>Title2</h1>
+                <p>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae dolores voluptate ipsam maxime
+                    error, praesentium ipsa! Nulla consectetur nemo eum earum iusto quia consequatur maiores id tempore
+                    consequuntur deserunt quasi, dignissimos rerum explicabo repellendus iure minima dolore. Id quam a,
+                    accusantium est facere libero debitis atque reiciendis quos cum beatae facilis, adipisci velit
+                    repellat ad nulla corporis dolor! Doloribus laborum ducimus dicta similique id tenetur consequuntur
+                    repellat inventore, molestias impedit quidem veritatis officia ut dolorum deserunt perspiciatis eos!
+                    Facilis nihil ullam iure, perspiciatis quam distinctio ducimus, aliquid quod eum ipsam corrupti enim
+                    dolorum recusandae fugit laudantium accusantium ratione eaque quas.
+                </p>
+            </div>
+            <div id="tab_content3" class="tab_content">
+                <h1>Title3</h1>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita facere reiciendis blanditiis
+                    nesciunt, repellendus fugit deleniti consequuntur. Fuga enim tempora non fugit itaque assumenda
+                    dolorem laboriosam officiis. Mollitia, doloremque eius?
+                </p>
+            </div>
+
+
+
+
+
+            <div id="tab_content3" class="tab_content">
+                <h1>Title3</h1>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita facere reiciendis blanditiis
+                    nesciunt, repellendus fugit deleniti consequuntur. Fuga enim tempora non fugit itaque assumenda
+                    dolorem laboriosam officiis. Mollitia, doloremque eius?
+                </p>
+            </div>
+
+            <div id="tab_content3" class="tab_content">
+                <h1>Title3</h1>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita facere reiciendis blanditiis
+                    nesciunt, repellendus fugit deleniti consequuntur. Fuga enim tempora non fugit itaque assumenda
+                    dolorem laboriosam officiis. Mollitia, doloremque eius?
+                </p>
+            </div>
+
+            <div id="tab_content3" class="tab_content">
+                <h1>Title8</h1>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita facere reiciendis blanditiis
+                    nesciunt, repellendus fugit deleniti consequuntur. Fuga enim tempora non fugit itaque assumenda
+                    dolorem laboriosam officiis. Mollitia, doloremque eius?
+                </p>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="tab.js"></script>
+    <!-- 產品分類隔頁結束 -->
+
+    <!-- 購物方式 -->
+    <br><br>
+    <h2>購物方式</h2>
+    <!--flip-right為加入動畫  -->
+    <section data-aos="flip-right" class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 col-md-3 ">
+                    <div class="card mt-3  p-3 shadow w-100">
+                        <img src="https://s.yimg.com/ny/api/res/1.2/Juk1tFpESvxuu8Cy5wssyQ--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9NTEwO2g9Mjg3/https://media.zenfs.com/ko/setn.com.tw/3156a01d1d816f305e06526ec9f420a7"
+                            class="card-img-top" alt="...">
+                        <div class="card-body text-center">
+                            <h2>來店購買</h2>
+                            <p class="card-text text-center">購買資訊</p>
+                            <a href="#" class="btn btn-primary">點我查看</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3 ">
+                    <div class="card mt-3  p-3 shadow w-100">
+                        <img src="https://s.yimg.com/ny/api/res/1.2/Juk1tFpESvxuu8Cy5wssyQ--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9NTEwO2g9Mjg3/https://media.zenfs.com/ko/setn.com.tw/3156a01d1d816f305e06526ec9f420a7"
+                            class="card-img-top" alt="...">
+                        <div class="card-body text-center">
+                            <h2>ATM轉帳</h2>
+                            <p class="card-text">購買資訊</p>
+                            <a href="#" class="btn btn-primary">點我查看</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3 ">
+                    <div class="card mt-3  p-3 shadow w-100">
+                        <img src="https://s.yimg.com/ny/api/res/1.2/Juk1tFpESvxuu8Cy5wssyQ--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9NTEwO2g9Mjg3/https://media.zenfs.com/ko/setn.com.tw/3156a01d1d816f305e06526ec9f420a7"
+                            class="card-img-top" alt="...">
+                        <div class="card-body text-center">
+                            <h2>蝦皮賣場</h2>
+                            <p class="card-text">購買資訊</p>
+                            <a href="#" class="btn btn-primary">點我查看</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-3 ">
+                    <div class="card mt-3  p-3 shadow w-100">
+                        <img src="https://s.yimg.com/ny/api/res/1.2/Juk1tFpESvxuu8Cy5wssyQ--~A/YXBwaWQ9aGlnaGxhbmRlcjtzbT0xO3c9NTEwO2g9Mjg3/https://media.zenfs.com/ko/setn.com.tw/3156a01d1d816f305e06526ec9f420a7"
+                            class="card-img-top" alt="...">
+                        <div class="card-body text-center">
+                            <h2>PCHOME</h2>
+                            <p class="card-text">購買資訊</p>
+                            <a href="#" class="btn btn-primary">點我查看</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- 購物方式結束 -->
+
+
+    <!--活動資訊  -->
+    <br><br>
+    <h2>活動資訊</h2>
+
+    <!-- Swiper -->
+    <!-- Swiper -->
+    <div class="swiper-container activity-container banner2-container ">
+        <div class="swiper-wrapper"
+            style="transition-duration: 1ms; transform-origin: 50% 50% -185px; transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(-180deg);">
+            <div class="swiper-slide activity" style="background-image:url(./img/na1.jpg)"></div>
+            <div class="swiper-slide activity" style="background-image:url(./img/na2.jpg)"></div>
+            <div class="swiper-slide activity" style="background-image:url(./img/na3.jpg)"></div>
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- 桌球小劇場 -->
+    <br><br>
+    <h2>桌球小劇場</h2>
+
+    <div class="tennis-bgtheat">
+        <!-- 小劇場1 -->
+        <div class="tennis-smtheat">
+            <!-- Swiper -->
+            <div class="swiper-container small-theater ">
+                <div class="swiper-wrapper"
+                    style="transition-duration: 1ms; transform-origin: 50% 50% -185px; transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(-180deg);">
+
+                    <div class="swiper-slide" style="background-image:url(./img/na1.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(./img/na2.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(./img/na3.jpg)"></div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+            <!-- <div class="swiper-wrapper" style="transition-duration: 0ms; transform-origin: 50% 50% -185px; transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(-180deg);"> -->
+        </div>
+        <!-- 小劇場2 -->
+        <div class="tennis-smtheat">
+            <!-- Swiper -->
+            <div class="swiper-container small-theater ">
+                <div class="swiper-wrapper"
+                    style="transition-duration: 1ms; transform-origin: 50% 50% -185px; transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(-180deg);">
+
+                    <div class="swiper-slide" style="background-image:url(./img/na1.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(./img/na2.jpg)"></div>
+                    <div class="swiper-slide" style="background-image:url(./img/na3.jpg)"></div>
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination"></div>
+            </div>
+            <!-- <div class="swiper-wrapper" style="transition-duration: 0ms; transform-origin: 50% 50% -185px; transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(-180deg);"> -->
+        </div>
+
+    </div>
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper('.small-theater', {
+            slidesPerView: 'auto',
+
+            // 自動播放
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
+
+            effect: 'cube',
+            grabCursor: true,
+            cubeEffect: {
+                shadow: true,
+                slideShadows: true,
+                shadowOffset: 20,
+                shadowScale: 0.94,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+            },
+        });
+    </script>
+    <!-- 桌球小劇場結束 -->
+
+
+
+    <!-- 活動資訊項部動畫 -->
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper('.banner2-container', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+
+            // 自動播放
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
+
+
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+            },
+        });
+
+    </script>
+    <!-- 活動資訊結束 -->
+
+
+
+    <!-- banner輪播js -->
+    <!-- Initialize Swiper -->
+    <script>
+        var swiper = new Swiper('.banner-container', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            loop: true,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+
+    </script>
+
+
+    <!-- 購物方式動畫 -->
+    <script>
+        AOS.init();
+    </script>
+
+
+
+</body>
+
+</html>
